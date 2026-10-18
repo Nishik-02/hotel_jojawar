@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Calendar as CalendarIcon, Users, BedDouble, Search, Sparkles } from 'lucide-react';
+import { Calendar as CalendarIcon, Users, BedDouble, Search, Sparkles, Home } from 'lucide-react';
 import { roomsData } from '../../data/hotelData';
 
 export default function QuickBookingBar({ onCheckAvailability }) {
@@ -8,6 +8,7 @@ export default function QuickBookingBar({ onCheckAvailability }) {
 
   const [checkIn, setCheckIn] = useState(today);
   const [checkOut, setCheckOut] = useState(tomorrow);
+  const [roomsCount, setRoomsCount] = useState('1');
   const [guests, setGuests] = useState('2');
   const [roomType, setRoomType] = useState('luxury-rooms');
 
@@ -16,7 +17,8 @@ export default function QuickBookingBar({ onCheckAvailability }) {
     onCheckAvailability({
       checkIn,
       checkOut,
-      guests: parseInt(guests, 10),
+      roomsCount: parseInt(roomsCount, 10) || 1,
+      guests: parseInt(guests, 10) || 2,
       roomType
     });
   };
@@ -36,7 +38,7 @@ export default function QuickBookingBar({ onCheckAvailability }) {
           </span>
         </div>
 
-        <form onSubmit={handleSubmit} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 sm:gap-4 items-end">
+        <form onSubmit={handleSubmit} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-3 sm:gap-3.5 items-end">
           
           {/* Check-In */}
           <div className="space-y-1.5">
@@ -70,22 +72,38 @@ export default function QuickBookingBar({ onCheckAvailability }) {
             />
           </div>
 
+          {/* Rooms */}
+          <div className="space-y-1.5">
+            <label className="block text-xs font-bold uppercase tracking-wider text-emerald-900 flex items-center space-x-1.5">
+              <Home className="w-3.5 h-3.5 text-gold-600" />
+              <span>Rooms</span>
+            </label>
+            <input
+              type="number"
+              min="1"
+              max="12"
+              value={roomsCount}
+              onChange={(e) => setRoomsCount(e.target.value)}
+              className="w-full bg-ivory-100 border border-gold-500/30 rounded-lg px-3 py-2 text-xs sm:text-sm font-medium text-charcoal-900 focus:ring-2 focus:ring-emerald-700 focus:border-gold-500 outline-none transition-all"
+              required
+            />
+          </div>
+
           {/* Guests */}
           <div className="space-y-1.5">
             <label className="block text-xs font-bold uppercase tracking-wider text-emerald-900 flex items-center space-x-1.5">
               <Users className="w-3.5 h-3.5 text-gold-600" />
               <span>Guests</span>
             </label>
-            <select
+            <input
+              type="number"
+              min="1"
+              max="50"
               value={guests}
               onChange={(e) => setGuests(e.target.value)}
               className="w-full bg-ivory-100 border border-gold-500/30 rounded-lg px-3 py-2 text-xs sm:text-sm font-medium text-charcoal-900 focus:ring-2 focus:ring-emerald-700 focus:border-gold-500 outline-none transition-all"
-            >
-              <option value="1">1 Guest</option>
-              <option value="2">2 Guests</option>
-              <option value="3">3 Guests</option>
-              <option value="4">4 Guests (Suite)</option>
-            </select>
+              required
+            />
           </div>
 
           {/* Room Type */}
@@ -111,10 +129,10 @@ export default function QuickBookingBar({ onCheckAvailability }) {
           <div>
             <button
               type="submit"
-              className="w-full py-2.5 sm:py-3 px-4 rounded-lg bg-emerald-700 hover:bg-emerald-800 text-gold-200 hover:text-white font-bold text-xs uppercase tracking-widest border border-gold-500/50 shadow-md hover:shadow-lg transition-all duration-300 flex items-center justify-center space-x-2"
+              className="w-full py-2.5 sm:py-3 px-4 rounded-lg bg-emerald-700 hover:bg-emerald-800 text-gold-200 hover:text-white font-bold text-xs uppercase tracking-widest border border-gold-500/50 shadow-md hover:shadow-lg transition-all duration-300 flex items-center justify-center space-x-2 cursor-pointer"
             >
               <Search className="w-4 h-4 text-gold-400" />
-              <span>Check Availability</span>
+              <span>Check Rates</span>
             </button>
           </div>
 

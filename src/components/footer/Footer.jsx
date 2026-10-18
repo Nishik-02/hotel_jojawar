@@ -23,26 +23,20 @@ export default function Footer({ onOpenBooking }) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 pb-12 border-b border-gold-500/20">
           
-          {/* Col 1: Brand */}
+          {/* Col 1: Brand (Crossed-out tagline and text removed per screenshot) */}
           <div className="lg:col-span-4 space-y-4">
             <div className="flex items-center space-x-3.5">
               <img src={hotelLogo} alt="Kesar Bagh Logo" className="w-12 h-14 object-contain" />
               <div>
                 <h3 className="font-serif text-2xl font-bold text-gold-200">Kesar Bagh</h3>
-                <p className="text-[10px] uppercase tracking-[0.2em] text-gold-400 font-bold">
-                  A Quiet Retreat in the Aravalli Hills
-                </p>
               </div>
             </div>
-            <p className="text-xs text-ivory-300 leading-relaxed font-light">
-              Spread across 150 acres returned to nature amidst the scenic Aravalli Hills in Jojawar, Rajasthan. Recreated by Rao Sahib of Jojawar, Maharaj Singh Ji.
-            </p>
-            <div className="pt-1">
+            <div className="pt-2">
               <a
                 href={hotelInfo.rawlaUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center space-x-2 text-xs font-bold text-gold-300 hover:text-white bg-emerald-900/90 px-3 py-1.5 rounded-lg border border-gold-500/30"
+                className="inline-flex items-center space-x-2 text-xs font-bold text-gold-300 hover:text-white bg-emerald-900/90 px-3.5 py-2 rounded-lg border border-gold-500/30 hover:border-gold-400 transition-colors shadow-sm"
               >
                 <span>Visit Sister Hotel: Rawla Jojawar</span>
                 <ExternalLink className="w-3.5 h-3.5" />
@@ -118,7 +112,6 @@ export default function Footer({ onOpenBooking }) {
 
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-ivory-400 gap-4 text-center sm:text-left">
           <p>© {new Date().getFullYear()} Kesar Bagh, Jojawar. All rights reserved.</p>
-          <p className="text-gold-400/80">Recreated by Rao Sahib of Jojawar, Maharaj Singh Ji</p>
         </div>
       </div>
     </footer>

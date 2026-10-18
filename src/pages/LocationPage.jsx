@@ -1,17 +1,14 @@
 import React from 'react';
 import SectionHeader from '../components/common/SectionHeader';
-import { locationData, hotelInfo } from '../data/hotelData';
-import { MapPin, Navigation, Plane, Train, Compass, Car } from 'lucide-react';
+import { locationData } from '../data/hotelData';
+import { Plane, Train, Navigation, MapPin } from 'lucide-react';
 
 export default function LocationPage() {
   return (
     <div className="py-12 sm:py-20 max-w-5xl mx-auto px-4 sm:px-6 space-y-16">
       
-      {/* Page Header */}
+      {/* Page Header (Internal tag and subtitle removed per screenshot) */}
       <div className="text-center max-w-3xl mx-auto space-y-3">
-        <span className="text-xs uppercase font-bold tracking-[0.25em] text-emerald-700">
-          PAGE 6 – LOCATION
-        </span>
         <h1 className="font-serif text-3xl sm:text-5xl font-bold text-emerald-950 tracking-tight">
           LOCATION
         </h1>
@@ -19,21 +16,18 @@ export default function LocationPage() {
         <h2 className="font-serif text-xl sm:text-2xl font-bold text-emerald-900">
           {locationData.heading}
         </h2>
-        <p className="font-serif italic text-base text-gold-700 font-normal">
-          {locationData.subtitle}
-        </p>
         <p className="text-xs sm:text-sm text-charcoal-700 leading-relaxed max-w-2xl mx-auto">
           {locationData.description}
         </p>
       </div>
 
-      {/* How to Reach Kesar Bagh (Page 20 of PDF) */}
+      {/* How to Reach Kesar Bagh (Corrected text per screenshot) */}
       <div className="bg-ivory-100 rounded-3xl p-6 sm:p-10 border border-gold-500/30 shadow-royal space-y-6">
         <div className="border-b border-gold-500/20 pb-3">
           <h3 className="font-serif text-2xl font-bold text-emerald-950">
             How to Reach Kesar Bagh
           </h3>
-          <p className="text-xs text-charcoal-700 mt-1">
+          <p className="text-xs sm:text-sm text-charcoal-700 mt-1">
             {locationData.howToReach.intro}
           </p>
         </div>
@@ -46,7 +40,7 @@ export default function LocationPage() {
           </h4>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {locationData.howToReach.air.map((air, i) => (
-              <div key={i} className="p-4 rounded-2xl bg-ivory-200 border border-gold-500/25 space-y-1.5">
+              <div key={i} className="p-4 rounded-2xl bg-ivory-200 border border-gold-500/25 space-y-1.5 shadow-sm">
                 <div className="font-bold text-sm text-emerald-950">{air.name}</div>
                 <div className="text-xs font-mono font-bold text-gold-700">{air.distance}</div>
                 <p className="text-xs text-charcoal-700 leading-snug">{air.desc}</p>
@@ -61,7 +55,7 @@ export default function LocationPage() {
             <Train className="w-4 h-4 text-gold-600" />
             <span>By Rail</span>
           </h4>
-          <div className="p-4 rounded-2xl bg-ivory-200 border border-gold-500/25 space-y-1.5 max-w-xl">
+          <div className="p-4 rounded-2xl bg-ivory-200 border border-gold-500/25 space-y-1.5 max-w-xl shadow-sm">
             <div className="font-bold text-sm text-emerald-950">{locationData.howToReach.rail[0].name}</div>
             <div className="text-xs font-mono font-bold text-gold-700">{locationData.howToReach.rail[0].distance}</div>
             <p className="text-xs text-charcoal-700 leading-snug">{locationData.howToReach.rail[0].desc}</p>
@@ -69,20 +63,20 @@ export default function LocationPage() {
         </div>
       </div>
 
-      {/* Explore Rajasthan from Kesar Bagh (Page 21 of PDF) */}
+      {/* Itinerary Section - Updated title per screenshot: "How can Kesar Bagh fit into your itinerary?" */}
       <div className="bg-ivory-100 rounded-3xl p-6 sm:p-10 border border-gold-500/30 shadow-royal space-y-6">
         <div className="border-b border-gold-500/20 pb-3">
           <h3 className="font-serif text-2xl font-bold text-emerald-950">
-            Explore Rajasthan from Kesar Bagh
+            {locationData.itineraryHeading}
           </h3>
-          <p className="text-xs text-charcoal-700 mt-1">
+          <p className="text-xs sm:text-sm text-charcoal-700 mt-1">
             Kesar Bagh's location in the Aravalli countryside makes it possible to combine a peaceful stay in nature with visits to some of Rajasthan's best-known heritage and cultural destinations.
           </p>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {locationData.excursions.map((exc, i) => (
-            <div key={i} className="p-4 rounded-2xl bg-ivory-200 border border-gold-500/20 space-y-1.5">
+            <div key={i} className="p-4 rounded-2xl bg-ivory-200 border border-gold-500/20 space-y-1.5 shadow-sm">
               <div className="flex justify-between items-center">
                 <h4 className="font-serif font-bold text-sm text-emerald-950">{exc.name}</h4>
                 <span className="px-2 py-0.5 rounded bg-emerald-900 text-gold-300 font-mono text-[10px] font-bold">
@@ -95,20 +89,44 @@ export default function LocationPage() {
         </div>
       </div>
 
-      {/* Our Location & Directions (Page 22 of PDF) */}
+      {/* Regional Location Map & Google Map */}
       <div className="bg-ivory-100 rounded-3xl p-6 sm:p-10 border border-gold-500/30 shadow-royal space-y-6">
         <h3 className="font-serif text-2xl font-bold text-emerald-950">
-          Our Location
+          Our Location & Map
         </h3>
 
-        <div className="p-4 rounded-2xl bg-ivory-200 border border-gold-500/30 space-y-1 text-sm text-charcoal-900 font-medium">
-          <p className="font-bold text-emerald-950">Kesar Bagh</p>
-          <p>Jojawar, Marwar Junction</p>
-          <p>Pali District, Rajasthan – 306022</p>
-          <p>India</p>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+          <div className="p-5 rounded-2xl bg-ivory-200 border border-gold-500/30 space-y-2 text-sm text-charcoal-900 font-medium">
+            <div className="flex items-center space-x-2 text-emerald-950">
+              <MapPin className="w-5 h-5 text-gold-600" />
+              <p className="font-bold text-base">Kesar Bagh</p>
+            </div>
+            <p>Jojawar, Marwar Junction</p>
+            <p>Pali District, Rajasthan – 306022</p>
+            <p>India</p>
+            <div className="pt-2">
+              <a
+                href={locationData.googleMapsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center space-x-2 px-5 py-2.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-gold-200 hover:text-white font-bold text-xs uppercase tracking-widest shadow-md transition-all"
+              >
+                <Navigation className="w-3.5 h-3.5 text-gold-400" />
+                <span>Get Directions on Google Maps</span>
+              </a>
+            </div>
+          </div>
+
+          <div className="rounded-2xl overflow-hidden aspect-[4/3] border-2 border-gold-500/40 shadow-md bg-ivory-100 p-2 flex items-center justify-center">
+            <img 
+              src="/map.png" 
+              alt="Regional map for Kesar Bagh" 
+              className="w-full h-full object-contain" 
+            />
+          </div>
         </div>
 
-        {/* Interactive Map Embed */}
+        {/* Interactive Google Maps Embed */}
         <div className="relative rounded-2xl overflow-hidden aspect-[16/9] border-2 border-gold-500/40 shadow-md">
           <iframe
             title="Kesar Bagh Google Maps"
@@ -119,19 +137,7 @@ export default function LocationPage() {
           />
         </div>
 
-        <div className="flex justify-center sm:justify-start">
-          <a
-            href={locationData.googleMapsUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center space-x-2 px-7 py-3 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-gold-200 hover:text-white font-bold text-xs uppercase tracking-widest shadow-md transition-all"
-          >
-            <Navigation className="w-4 h-4 text-gold-400" />
-            <span>Get Directions</span>
-          </a>
-        </div>
-
-        {/* A Gateway to the Aravallis (Page 22 of PDF) */}
+        {/* A Gateway to the Aravallis */}
         <div className="pt-4 border-t border-gold-500/20 space-y-2">
           <h4 className="font-serif text-xl font-bold text-emerald-950">
             {locationData.gatewayText.heading}

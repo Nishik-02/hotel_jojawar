@@ -5,50 +5,18 @@ import { activitiesData } from '../data/hotelData';
 import { 
   Clock, 
   Sparkles, 
-  Compass, 
-  Train, 
-  Trees, 
-  Footprints, 
-  Award, 
-  Mountain, 
-  Feather, 
-  Camera, 
-  UtensilsCrossed, 
-  Castle, 
-  Car,
   Eye,
-  ArrowRight,
-  Calendar
+  ArrowRight
 } from 'lucide-react';
 
-const renderExperienceIcon = (iconKey) => {
-  switch (iconKey) {
-    case 'train': return <Train className="w-5 h-5 text-gold-400" />;
-    case 'jeep': return <Compass className="w-5 h-5 text-gold-400" />;
-    case 'jungle': return <Trees className="w-5 h-5 text-gold-400" />;
-    case 'village': case 'town': return <Footprints className="w-5 h-5 text-gold-400" />;
-    case 'horse': return <Award className="w-5 h-5 text-gold-400" />;
-    case 'trekking': return <Mountain className="w-5 h-5 text-gold-400" />;
-    case 'bird': return <Feather className="w-5 h-5 text-gold-400" />;
-    case 'camera': return <Camera className="w-5 h-5 text-gold-400" />;
-    case 'culinary': return <UtensilsCrossed className="w-5 h-5 text-gold-400" />;
-    case 'fort': return <Castle className="w-5 h-5 text-gold-400" />;
-    case 'vintage': return <Car className="w-5 h-5 text-gold-400" />;
-    default: return <Sparkles className="w-5 h-5 text-gold-400" />;
-  }
-};
-
-export default function ExperiencesPage({ onOpenBooking }) {
+export default function ExperiencesPage() {
   const [selectedActivity, setSelectedActivity] = useState(null);
 
   return (
     <div className="py-12 sm:py-20 max-w-6xl mx-auto px-4 sm:px-6 space-y-12">
       
-      {/* Page Header */}
+      {/* Page Header (Internal tag removed per screenshot) */}
       <div className="text-center max-w-3xl mx-auto space-y-3">
-        <span className="text-xs uppercase font-bold tracking-[0.25em] text-emerald-700">
-          PAGE 4 – EXPERIENCES
-        </span>
         <h1 className="font-serif text-3xl sm:text-5xl font-bold text-emerald-950 tracking-tight">
           EXPERIENCES AT KESAR BAGH
         </h1>
@@ -58,36 +26,26 @@ export default function ExperiencesPage({ onOpenBooking }) {
         </p>
         <div className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-gold-500/20 border border-gold-500/40 text-xs font-serif italic text-gold-900">
           <Sparkles className="w-3.5 h-3.5 text-gold-600" />
-          <span>Click any visual card or symbol below to read the complete experience story</span>
+          <span>Click any card below to view photos and details</span>
         </div>
       </div>
 
-      {/* 11 Experiences Visual Interactive Grid */}
+      {/* 12 Experiences Grid (Badges and numbers removed per annotated screenshot) */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-        {activitiesData.map((act, index) => (
+        {activitiesData.map((act) => (
           <div 
             key={act.id}
             onClick={() => setSelectedActivity(act)}
             className="group cursor-pointer bg-ivory-100 rounded-3xl overflow-hidden border border-gold-500/30 shadow-sm hover:shadow-2xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between"
           >
-            {/* Visual Thumbnail with Symbol & Badges */}
+            {/* Visual Thumbnail */}
             <div className="relative aspect-[16/10] overflow-hidden bg-charcoal-900">
               <img 
-                src={act.image || 'https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=800&auto=format&fit=crop'} 
+                src={act.image} 
                 alt={act.title}
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" 
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-emerald-950/85 via-emerald-950/20 to-black/20" />
-              
-              {/* Symbol / Icon Badge */}
-              <div className="absolute top-3 left-3 flex items-center space-x-2">
-                <div className="p-2.5 rounded-xl bg-emerald-950/85 backdrop-blur-md border border-gold-500/40 shadow-lg">
-                  {renderExperienceIcon(act.iconKey || act.type)}
-                </div>
-                <span className="px-2.5 py-1 rounded-full bg-emerald-900/80 backdrop-blur-md text-gold-300 text-[10px] font-bold uppercase tracking-wider border border-gold-500/30">
-                  {act.category}
-                </span>
-              </div>
+              <div className="absolute inset-0 bg-gradient-to-t from-emerald-950/85 via-emerald-950/20 to-black/10" />
 
               {/* Duration Pill */}
               <div className="absolute top-3 right-3">
@@ -97,11 +55,8 @@ export default function ExperiencesPage({ onOpenBooking }) {
                 </div>
               </div>
 
-              {/* Number Tag & Title */}
-              <div className="absolute bottom-3 left-3 right-3 text-white">
-                <span className="text-[10px] uppercase font-bold tracking-widest text-gold-400">
-                  Experience {index + 1 < 10 ? '0' + (index + 1) : index + 1}
-                </span>
+              {/* Title on image bottom */}
+              <div className="absolute bottom-3 left-4 right-4 text-white">
                 <h3 className="font-serif text-lg sm:text-xl font-bold text-ivory-100 drop-shadow-sm group-hover:text-gold-300 transition-colors">
                   {act.title}
                 </h3>
@@ -122,18 +77,6 @@ export default function ExperiencesPage({ onOpenBooking }) {
                   <span>Click to Read Details</span>
                   <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
                 </span>
-
-                <button
-                  type="button"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    if (onOpenBooking) onOpenBooking({ specialRequests: `Inquiry for ${act.title}` });
-                  }}
-                  className="p-2 rounded-lg bg-emerald-700 hover:bg-emerald-800 text-gold-300 hover:text-white transition-colors shadow-sm"
-                  title="Inquire this experience"
-                >
-                  <Calendar className="w-3.5 h-3.5" />
-                </button>
               </div>
             </div>
           </div>
@@ -145,9 +88,6 @@ export default function ExperiencesPage({ onOpenBooking }) {
         isOpen={Boolean(selectedActivity)}
         onClose={() => setSelectedActivity(null)}
         activity={selectedActivity}
-        onBookActivity={(act) => {
-          if (onOpenBooking) onOpenBooking({ specialRequests: `Booking Inquiry: ${act.title} (${act.duration})` });
-        }}
       />
 
     </div>
